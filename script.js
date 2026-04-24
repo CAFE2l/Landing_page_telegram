@@ -5,7 +5,7 @@ const revealItems = document.querySelectorAll("[data-reveal]");
 const leadForm = document.querySelector("#leadForm");
 const telegramBaseUrl = "https://t.me/+01LU4QabjOUzNTU5";
 const interactivePanels = document.querySelectorAll(
-  ".hero-window, .floating-card, .feature-card, .audience-card, .reason, .offer-panel, .lead-form, .faq-list details"
+  ".hero-window, .floating-card, .feature-card, .audience-card, .reason, .offer-panel, .lead-form"
 );
 
 if (navToggle && nav) {
