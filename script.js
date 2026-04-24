@@ -3,7 +3,7 @@ const nav = document.querySelector("[data-nav]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const revealItems = document.querySelectorAll("[data-reveal]");
 const leadForm = document.querySelector("#leadForm");
-const telegramBaseUrl = "https://t.me/+01LU4QabjOUzNTU5";
+const whatsappBaseUrl = "https://wa.me/5541996713782";
 const interactivePanels = document.querySelectorAll(
   ".hero-window, .floating-card, .feature-card, .audience-card, .reason, .offer-panel, .lead-form"
 );
@@ -84,14 +84,14 @@ if (leadForm) {
     const goal = String(formData.get("goal") || "").trim();
 
     const message = [
-      "Ol\u00e1! Vim pela landing page do CAF\u00c9 Ag\u00eancias Digitais.",
+      "Ol\u00e1! Quero criar minha ag\u00eancia digital.",
       "",
       `Nome: ${name}`,
       `Momento: ${stage}`,
       `Objetivo: ${goal}`,
     ].join("\n");
 
-    const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramBaseUrl)}&text=${encodeURIComponent(message)}`;
+    const shareUrl = `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
     window.open(shareUrl, "_blank", "noopener,noreferrer");
   });
 }
