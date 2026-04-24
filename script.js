@@ -5,8 +5,9 @@ const revealItems = document.querySelectorAll("[data-reveal]");
 const leadForm = document.querySelector("#leadForm");
 const whatsappBaseUrl = "https://wa.me/5541996713782";
 const interactivePanels = document.querySelectorAll(
-  ".hero-window, .floating-card, .feature-card, .audience-card, .reason, .offer-panel, .lead-form"
+  ".hero-window, .floating-card, .feature-card, .audience-card, .reason, .offer-panel, .lead-form, .telegram-spotlight, .deliverables-grid article, .lead-highlights article, .faq-list details"
 );
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
@@ -29,6 +30,28 @@ const syncHeader = () => {
 
 syncHeader();
 window.addEventListener("scroll", syncHeader, { passive: true });
+
+if (!prefersReducedMotion) {
+  let cursorFrame = null;
+  let nextX = window.innerWidth / 2;
+  let nextY = window.innerHeight * 0.28;
+
+  const syncCursorGlow = () => {
+    document.documentElement.style.setProperty("--cursor-x", `${nextX}px`);
+    document.documentElement.style.setProperty("--cursor-y", `${nextY}px`);
+    cursorFrame = null;
+  };
+
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      nextX = event.clientX;
+      nextY = event.clientY;
+      if (!cursorFrame) cursorFrame = window.requestAnimationFrame(syncCursorGlow);
+    },
+    { passive: true }
+  );
+}
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
@@ -72,7 +95,9 @@ const enableInteractivePanel = (panel) => {
   });
 };
 
-interactivePanels.forEach(enableInteractivePanel);
+if (!prefersReducedMotion) {
+  interactivePanels.forEach(enableInteractivePanel);
+}
 
 if (leadForm) {
   leadForm.addEventListener("submit", (event) => {
